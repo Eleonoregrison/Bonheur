@@ -14,6 +14,12 @@ df.drop(columns=['year'])
 df.set_index('Country name')
 df1 = df.groupby(by=df['Country name']).mean()
 
+# On remplace les NaN par la moyenne de la colonne
+for columns in df.columns : 
+    if columns != 'Country name' : 
+        moyenne= df[columns].mean()
+        df[columns].fillna(value=moyenne, inplace=True)
+
 # On calcule notre indice de bonheur avec la formule suivante
 df1['Indice'] = (0.2*df1['Life Ladder']+0.15*df1['Log GDP per capita']+ 0.1* df1['Social support'] + 0.1*df1['Healthy life expectancy at birth'] + 0.15*df1['Freedom to make life choices'] + 0.05*df1['Generosity'] + 0.05*df1['Perceptions of corruption'] + 0.1*df1['Positive affect'] + 0.1*df1['Negative affect'])/9
 
@@ -30,3 +36,4 @@ plt.bar(x,y, width = 0.06, color = couleurs)
 plt.ylim(0.075,0.0875)
 plt.xticks(rotation=90)
 plt.show()
+
