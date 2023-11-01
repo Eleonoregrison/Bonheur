@@ -20,10 +20,10 @@ for columns in df.columns :
         moyenne= df[columns].mean()
         df[columns].fillna(value=moyenne, inplace=True)
 
-# On calcule notre indice de bonheur avec la formule suivante
+# On calcule notre indice de bonheur avec la formule suivante en pondérant en fonction de l'importance que nous donnons à chacun des critères
 df1['Indice'] = (0.2*df1['Life Ladder']+0.15*df1['Log GDP per capita']+ 0.1* df1['Social support'] + 0.1*df1['Healthy life expectancy at birth'] + 0.15*df1['Freedom to make life choices'] + 0.05*df1['Generosity'] + 0.05*df1['Perceptions of corruption'] + 0.1*df1['Positive affect'] + 0.1*df1['Negative affect'])/9
 
-# On trie les pays selon cet indice (on remarque qu'on a un problème pour certains pays qui n'ont pas rempli certains critères)
+# On trie les pays selon cet indice
 df1.sort_values(by = ['Indice'], ascending = False)
 
 #On représente graphiquement le classement des pays les plus heureux (en arc-en-ciel parce que c'est beau)
